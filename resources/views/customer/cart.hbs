@@ -1,0 +1,61 @@
+{{#if session.cart}}
+
+    <section class="cart-order">
+        <div class="custom-container md:w-1/2 mx-auto">
+            <div class="flex items-center border-b py-4">
+                <img src="img/cart-black.png" alt="cart" />
+                <h1 class="text-2xl font-bold ml-3">Order Summary</h1>
+            </div>
+            <div class="listing-pizza">
+                {{#each session.cart.items as |itemss|}}
+                <div class="flex items-center my-4">
+                    <img class="w-20" src="img/{{itemss.item.image}}" alt="piz" />
+                    <div class="flex-1 ml-4">
+                        <h1 class="font-extrabold text-lg">{{itemss.item.name}}</h1>
+                        <span class="uppercase">{{itemss.item.size}}</span>
+                    </div>
+                    <span class="flex-1 capitalize">{{itemss.qty }} pcs</span>
+                    <h2 class="font-bold">&#8377; {{multiply itemss.item.price itemss.qty }}</h2>
+                </div>
+                {{/each}}
+            </div>
+            <hr>
+            <div class="text-right my-3">
+                <div>
+                    <span class="font-bold text-lg">Total Amount:</span>
+                    <span class="font-bold ml-3 amount text-2xl">&#8377; {{ session.cart.totalPrice }}</span>
+                </div>
+                <div class="cart-form"> 
+                    <form action="/order-place" method="POST">
+                        <input type="number" name="number"  value="{{mobile}}" placeholder="Phone Number" class="border border-gray-400 md:w-1/2 p-2 my-3" />
+                        <input type="text" name="address" value="{{address}}" placeholder="Address" class="border border-gray-400 md:w-1/2 p-2 my-3" />
+                        {{#if messages.error}}
+                            <div class="my-2"> 
+                                <span class="text-sm font-bold text-red-500 ">{{ messages.error}}</span>
+                            </div>
+                        {{/if}}
+                        <div>
+                            
+                        {{#if users}}
+                            <button class="btn-primary py-2 px-6 rounded-full text-white font-bold">Order Now</button>
+                        {{else}}
+                            <a class="inline-block btn-primary py-2 px-6 rounded-full text-white font-bold" href="/login">Login to continue</a>
+                        {{/if}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{{else}}
+    <section class="empty-cart py-6 h-screen">
+        <div class="custom-container mx-auto w-1/2 text-center">
+            <h2 class="text-2xl font-bold capitalize">cart Empty 🤭</h2>
+            <p class="text-gray-500 my-4">You probably haven't ordered a pizza yet. <br> To order a pizza,go to main page
+            </p>
+            <img class="w-3/5 mx-auto my-8" src="/img/empty-cart.png" alt="empty-cart" />
+            <a href="/" class="inline-block rounded-full btn-primary text-white font-bold px-6 py-2 cursor-pointer">Go back</a>
+        </div>
+    </section>
+
+{{/if}}

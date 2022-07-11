@@ -1,0 +1,42 @@
+<section class="order-details">
+    <div class="custom-container mx-auto mt-5" id="adminContainer">
+ 
+        <div class="hide-table">
+            <h1 class="font-bold text-xl">All orders</h1>
+        </div> 
+        {{#if messages.success }} 
+            <div id="success-alert"
+                class="flex items-center bg-green-500 text-white text-sm font-bold py-1 my-3 rounded-full px-3"
+                role="alert">
+                <img class="w-10" src="/img/tick.png" alt="error" />
+                <p class="px-2">{{messages.success}}</p>
+
+            </div>
+        {{/if }}
+                {{#if messages.error }} 
+            <div id="success-alert"
+                class="flex items-center bg-red-500 text-white text-sm font-bold py-1 my-3 rounded-full px-3"
+                role="alert">
+                <img class="w-10" src="/img/tick.png" alt="error" />
+                <p class="px-2">{{messages.error}}</p>
+
+            </div>
+        {{/if }}
+        <div class="py-6">
+            <table class="table-auto w-full border bg-white hide-table">
+                <thead>
+                    <tr class="font-bold text-white">
+                        <th class="border px-4 py-2 text-left">Orders</th>
+                        <th class="border px-4 py-2 text-left">Customer</th>
+                        <th class="border px-4 py-2 text-left">Address</th>
+                        <th class="border px-4 py-2 text-left">Status</th>
+                        <th class="border px-4 py-2 text-left">Time</th>
+                    </tr>
+                </thead>
+                <tbody id="AdminPlacedOrder">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

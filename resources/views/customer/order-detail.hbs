@@ -1,0 +1,48 @@
+<section class="order-details">
+    <div class="custom-container mx-auto mt-5">
+        <div>
+            <h1 class="font-bold text-xl">All orders</h1>
+        </div>
+        {{#if messages.success}}
+            <div id="success-alert"
+                class="flex items-center bg-green-500 text-white text-sm font-bold py-1 my-3 rounded-full px-3"
+                role="alert">
+                <img class="w-10" src="/img/tick.png" alt="error" />
+                <p class="px-2">{{messages.success}}</p>
+
+            </div>
+        {{/if}}
+        <div class="py-6">
+            {{#if order}}
+            <table class="table-auto w-full border bg-white">
+                <thead>
+                    <tr class="font-bold text-white">
+                        <th class="border px-4 py-2 text-left">Orders</th>
+                        <th class="border px-4 py-2 text-left">Mobile</th>
+                        <th class="border px-4 py-2 text-left">Address</th>
+                        <th class="border px-4 py-2 text-left">Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each order}}
+
+                    <tr>
+                        <td class="border px-4 py-2 text-left order-link"><a href="/customer/single/{{this._id}}">{{this._id}}</a></td>
+                        <td class="border px-4 py-2 text-left">{{this.number}}</td>
+                        <td class="border px-4 py-2 text-left">{{ this.address }}</td>
+                        <td class="border px-4 py-2 text-left">{{ changeDateFormat this.createdAt }}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else }}
+            <div class="font-bold py-2 w-2/5 mx-auto text-center">  
+                 <p class="text-zinc-900  font-bold text-2xl">😮 No Orders Found.</p>
+                 <img src="/img/no-order.jpg" alt="no-order"/> 
+                <a href="/" class="inline-block rounded-full btn-primary text-white font-bold px-6 py-2 cursor-pointer">Go back</a>
+            </div>  
+            {{/if}}
+        </div>
+    </div>
+
+</section>
