@@ -65,7 +65,7 @@ hbs.registerPartials(path.join(__dirname,'/resources/views/partials'))
 
 // set template engine
 app.set('view engine','hbs') 
-app.set('views',path.join(__dirname,'/resources/views')); 
+app.set('view',path.join(__dirname,'/resources/views')); 
 
 
 // routes file  
